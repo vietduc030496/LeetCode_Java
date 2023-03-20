@@ -2,7 +2,8 @@ package com.vti.leetcode;
 
 /**
  * Given an integer num, repeatedly add all its digits until the result has only
- * one digit, and return it. Example: 38 -> 3 + 8 = 11 -> 1 + 1 = 2
+ * one digit, and return it. 
+ * Example: 38 -> 3 + 8 = 11 -> 1 + 1 = 2
  *
  */
 public class Add_Digits_258 {
