@@ -1,9 +1,6 @@
 package com.vti.leetcode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * You are given a large integer represented as an integer array digits, where
@@ -23,36 +20,28 @@ public class PlusOne_66 {
 
 	}
 
+	/**
+	 * 1. Lặp từ phần tử cuối cùng của mảng
+	 * 2. Phần tử cuối cùng nhỏ hơn 9, tăng thêm 1 và trả về digits
+	 * 3. Nếu lớn hơn 9, set thành 0 và chuyển đến giá trị tiếp theo của vòng lặp và tiếp tục bước 2 đến khi có giá trị trả về hoặc hết vòng lặp
+	 * 4. Nếu chạy hết vòng lặp, có nghĩa output trả về phải thêm giá trị
+	 * 5. Tạo array mới có length lớn hơn digits 1, set array[0] = 1, Ex: [9, 9, 9] -> [1, 0, 0, 0]
+	 *
+	 */
 	public static int[] plusOne(int[] digits) {
-		int lastIndex = digits.length - 1;
-		int valueRemember = 0;
+		int n = digits.length;
 
-		List<Integer> list = new ArrayList<>();
-		for (int i = lastIndex; i >= 0; --i) {
-			int total = 0;
-			if (i == lastIndex) {
-				total = digits[i] + valueRemember + 1;
-			} else {
-				total = digits[i] + valueRemember;
+		for (int i = n - 1; i >= 0; --i) {
+			if (digits[i] < 9) {
+				return digits;
 			}
 
-			if (total > 9) {
-				valueRemember = 1;
-			} else {
-				valueRemember = 0;
-			}
-
-			list.add(lastIndex - i, total % 10);
-			valueRemember = total / 10;
+			digits[n] = 0;
 		}
 
-		if (valueRemember > 0) {
-			list.add(valueRemember);
-		}
-
-		Collections.reverse(list);
-
-		return list.stream().mapToInt(Integer::intValue).toArray();
+		int[] newArr = new int[n + 1];
+		newArr[0] = 1;
+		return newArr;
 	}
 
 }
